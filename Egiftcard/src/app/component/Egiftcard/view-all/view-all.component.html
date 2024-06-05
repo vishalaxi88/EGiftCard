@@ -1,0 +1,73 @@
+<p>view-all works!</p>
+<div *ngIf="isUpdate">
+  <div class="alert alert-success" *ngIf="msg !=undefined">{{msg}}</div>
+  <div class="alert alert-danger" *ngIf="errorMsg !=undefined">{{errormsg}}</div>
+  <h3>update customer</h3>
+  <form #frm="ngForm" (ngSubmit)="updateConfirm()">
+        <div>CustomerId</div>
+        <div><input type="number" name="customerId" [(ngModel)]="updatecustomer.customerId" disabled></div>
+        
+
+        <div>FirstName</div>
+        <div><input type="text" name="firstName" [(ngModel)]="updatecustomer.firstName" required #customerFname="ngModel" class="form-control" /></div>
+        <div class="alert alert-danger" *ngIf="customerFname.invalid && customerFname.touched">First Name is requird</div>
+
+        <div>LastName</div>
+        <div><input type="text" name="lastName" [(ngModel)]="updatecustomer.lastName" required #customerLname="ngModel" class="form-control" /></div>
+        <div class="alert alert-danger" *ngIf="customerLname.invalid && customerLname.touched">Last Name is requird</div>
+
+        <div>Email</div>
+        <div><input type="text" name="email" [(ngModel)]="updatecustomer.email" required #customerEmail="ngModel" class="form-control" /></div>
+        <div class="alert alert-danger" *ngIf="customerEmail.invalid && customerEmail.touched">Email is requird</div>
+
+
+        <div>Mobile</div>
+        <div><input type="text" name="mobile" [(ngModel)]="updatecustomer.mobile" required #customerMobile="ngModel" class="form-control" /></div>
+        <div class="alert alert-danger" *ngIf="customerMobile.invalid && customerMobile.touched">Mobile is requird</div>
+
+        <div>Password</div>
+        <div><input type="text" name="password" [(ngModel)]="updatecustomer.password" required #customerPassword="ngModel" class="form-control" /></div>
+        <div class="alert alert-danger" *ngIf="customerPassword.invalid && customerPassword.touched">Password is requird </div>
+
+        <div>Address</div>
+        <div><input type="text" name="address" [(ngModel)]="updatecustomer.address" required #customerAddress="ngModel" class="form-control" /></div>
+        <div class="alert alert-danger" *ngIf="customerAddress.invalid && customerAddress.touched">Address is requird</div>
+
+        <div class="mt-2 text-center"><input type="submit" value="Update Customer" [disabled]="!frm.valid" class="btn btn-success" /></div>
+  </form>
+</div>
+
+<div class="container" *ngIf="!isUpdate">
+  <div class="alert alert-success" *ngIf="msg !=undefined">{{msg}}</div>
+  <div class="alert alert-danger" *ngIf="errorMsg !=undefined">{{errormsg}}</div>
+  <h3>View all customers</h3>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>first name</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>mobile</th>
+        <th>password</th>
+        <th>adress</th>
+        <th>Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let egiftcard of alldetails">
+        <td>{{egiftcard.customerId}}</td>
+        <td>{{egiftcard.firstName}}</td>
+        <td>{{egiftcard.lastName}}</td>
+        <td>{{egiftcard.email}}</td>
+        <td>{{egiftcard.mobile}}</td>
+        <td>{{egiftcard.password}}</td>
+        <td>{{egiftcard.address}}</td>
+        <td>
+          <button (click)="updateCustomer(egiftcard)">Update</button>
+          <button (click)="deleteCustomer(egiftcard.customerId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+</table>
+</div>

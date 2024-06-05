@@ -1,0 +1,34 @@
+<p>create works!</p>
+<h2>Register new user</h2>
+<div class="container">
+    <div class="alert alert-success" *ngIf="msg !=undefined">{{msg}}</div>
+    <div class="alert alert-danger" *ngIf="errorMsg !=undefined">{{errormsg}}</div>
+
+    <form #frm="ngForm" (ngSubmit)="addGiftcard()">
+
+        <div>GiftcardName</div>
+        <div><input type="text" name="giftcardName" [(ngModel)]="newEgiftcard.giftcardName" required #giftcardName="ngModel" class="form-control" /></div>
+        <div class="alert alert-danger" *ngIf="giftcardName.invalid && giftcardName.touched">GiftcardName is required</div>
+
+        <div>BrandList</div>
+        <div><input type="text" name="brandlist" [(ngModel)]="newEgiftcard.brandlist" required #giftcardBrandlist="ngModel" class="form-control" /></div>
+        <div class="alert alert-danger" *ngIf="giftcardBrandList.invalid && giftcardBrandList.touched">Brandlist is required</div>
+
+        <div>RedemptionDetails</div>
+        <div><input type="text" name="redemptiondetails" [(ngModel)]="newEgiftcard.redemptiondetails" required #giftcardedemptiondetails="ngModel" class="form-control" /></div>
+        <div class="alert alert-danger" *ngIf="giftcardRedemptiondetails.invalid && giftcardredemptiondetails.touched">RedemptionDetails is required</div>
+
+
+        <div>min amount</div>
+        <div><input type="text" name="minamount" [(ngModel)]="newEgiftcard.minamount" required #giftcardminamount="ngModel" class="form-control" /></div>
+        <div class="alert alert-danger" *ngIf="giftcardminamount.invalid && giftcardminamount.touched">min amount is required</div>
+
+        <div>max amount</div>
+        <div><input type="text" name="maxamount" [(ngModel)]="newEgiftcard.maxamount" required #giftcardmaxamount="ngModel" class="form-control" /></div>
+        <div class="alert alert-danger" *ngIf="giftcardmaxamount.invalid && giftcardmaxamount.touched">max amount is required </div>
+
+        
+
+        <div class="mt-2 text-center"><input type="submit" value="Add GiftCard" [disabled]="!frm.valid" class="btn btn-success" /></div>
+    </form>
+</div>
